@@ -60,6 +60,7 @@
     <Compile Include="DAL\AspNetUserLogin.cs">
       <DependentUpon>OnlineShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\CartDAL.cs" />
     <Compile Include="DAL\C__MigrationHistory.cs">
       <DependentUpon>OnlineShopModel.tt</DependentUpon>
     </Compile>
@@ -81,6 +82,7 @@
     <Compile Include="DAL\Product.cs">
       <DependentUpon>OnlineShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ProductDAL.cs" />
     <Compile Include="DAL\sysdiagram.cs">
       <DependentUpon>OnlineShopModel.tt</DependentUpon>
     </Compile>

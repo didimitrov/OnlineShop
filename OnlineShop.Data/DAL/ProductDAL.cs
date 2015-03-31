@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShop.Data.DAL
 {
-    class ProductDAL
+   public static class ProductDAL
     {
+      public static List<Product> GetAllProducts()
+      {
+          var db = new OnlineShopDbContext();
+          return db.Products.ToList();
+      }
     }
 }
