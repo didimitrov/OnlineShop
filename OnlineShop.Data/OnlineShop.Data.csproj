@@ -82,6 +82,7 @@
     <Compile Include="DAL\Product.cs">
       <DependentUpon>OnlineShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ProductCartDAL.cs" />
     <Compile Include="DAL\ProductDAL.cs" />
     <Compile Include="DAL\sysdiagram.cs">
       <DependentUpon>OnlineShopModel.tt</DependentUpon>
