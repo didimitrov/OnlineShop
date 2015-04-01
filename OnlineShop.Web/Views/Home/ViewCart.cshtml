@@ -1,0 +1,21 @@
+﻿@model IEnumerable<OnlineShop.Web.Models.CartElementViewModel>
+@{
+    ViewBag.Title = "ViewCart";
+}
+
+<h2>ViewCart</h2>
+<table class="table-bordered">
+    <tr>
+        <td>Product</td>
+        <td>Count</td>   
+        <td>Price</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductName</td>       
+            <td>@item.Count</td>       
+            <td>@item.Price</td>
+        </tr>
+    }
+</table>
