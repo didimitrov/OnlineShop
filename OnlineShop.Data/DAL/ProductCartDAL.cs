@@ -9,7 +9,7 @@ namespace OnlineShop.Data.DAL
         {
             var db = new OnlineShopDbContext();
             var user = db.AspNetUsers.FirstOrDefault(u => u.UserName == username);
-            return db.UsersCards.Include("Products").Where(x => x.UserId == user.Id).ToList();
+            return db.UsersCards.Where(x => x.UserId == user.Id).ToList();
         }
 
         public static void AddToCart(string username, int productId,int count)

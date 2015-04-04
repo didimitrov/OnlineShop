@@ -3,9 +3,8 @@ using OnlineShop.Data.DAL;
 
 namespace OnlineShop.Web.Models
 {
-    public class CartElementViewModel 
+    public class CartElementViewModel
     {
-      
 
         public CartElementViewModel(string productName, decimal unitPrice, int count,int id)
         {
@@ -19,7 +18,6 @@ namespace OnlineShop.Web.Models
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public int Count { get; set; }
-
         
     }
 }

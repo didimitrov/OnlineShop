@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web.Mvc;
@@ -39,11 +40,19 @@ namespace OnlineShop.Web.Controllers
             return View(list);
         }
 
-        [Authorize]
+      //  [Authorize]
         public ActionResult AddToCart(int id,int count)
         {
-            ProductCartDAL.AddToCart(User.Identity.Name,id, count);
-            return View(); 
+            if (User.Identity.IsAuthenticated)
+            {
+                ProductCartDAL.AddToCart(User.Identity.Name, id, count);
+                return View();      
+            }
+            else
+            {
+                throw new Exception("Error in AddtoCart");
+            }
+           
         }
 
         public ActionResult ViewAllProducts()
