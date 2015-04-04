@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using OnlineShop.Data.DAL;
 using OnlineShop.Web.Models;
 
@@ -43,16 +44,14 @@ namespace OnlineShop.Web.Controllers
       //  [Authorize]
         public ActionResult AddToCart(int id,int count)
         {
+           
             if (User.Identity.IsAuthenticated)
             {
                 ProductCartDAL.AddToCart(User.Identity.Name, id, count);
-                return View();      
-            }
-            else
-            {
-                throw new Exception("Error in AddtoCart");
-            }
-           
+                    return View();  
+                }
+            return View("Error");
+            //throw new Exception("Error in AddtoCart");
         }
 
         public ActionResult ViewAllProducts()

@@ -1,6 +1,7 @@
 ﻿@using OnlineShop.Data.DAL
 @model IEnumerable<OnlineShop.Web.Models.ProductViewModel>
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 @{
     ViewBag.Title = "ViewAllProducts";
 }
@@ -9,6 +10,14 @@
 http://blogs.msmvps.com/marafa/2014/06/13/how-to-create-asp-net-mvc-authentication-tables-in-an-existing-database/
 <p>
     @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Ajax.ActionLink("View card","ViewCart",new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "data"
+    })
 </p>
 <table class="table">
     <tr>
@@ -46,7 +55,7 @@ http://blogs.msmvps.com/marafa/2014/06/13/how-to-create-asp-net-mvc-authenticati
                 <input type="number" name="count" value=" " />
             </td>
             <td>
-                <input type="submit" name="submit" value="Add to cart" />
+                <input type="submit" name="submit" value="Add to cart" id="btn"/>
             </td>
             @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
@@ -58,3 +67,20 @@ http://blogs.msmvps.com/marafa/2014/06/13/how-to-create-asp-net-mvc-authenticati
 }
 
 </table>
+<div id="data"></div>
+<script>
+    //$(document).ready(function() {
+    //    $("#btn").click(function() {
+    //        $.ajax({
+    //            url: 'Home/ViewCart',
+    //            type: 'GET',
+    //            success: function(data) {
+    //                $('#result').html(data);
+    //            },
+    //            error: function(err) {
+    //                alert(JSON.stringify(err));
+    //            }
+    //        });
+    //    });
+    //})
+</script>

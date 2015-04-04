@@ -9,11 +9,11 @@ namespace OnlineShop.Data.DAL
         {
             var db = new OnlineShopDbContext();
             var user = db.AspNetUsers.FirstOrDefault(u => u.UserName == username);
-            return db.UsersCards.Where(x => x.UserId == user.Id).ToList();
+            return db.UsersCards.Include("Product").Where(x => x.UserId == user.Id).ToList();
         }
 
         public static void AddToCart(string username, int productId,int count)
-        {
+        {   
             var db = new OnlineShopDbContext();
             var user = db.AspNetUsers.FirstOrDefault(u => u.UserName == username);
             var product = db.Products.FirstOrDefault(p => p.Id == productId);
