@@ -38,7 +38,7 @@ namespace OnlineShop.Web.Controllers
             {
                 list.Add(new CartElementViewModel(card.Product.Name,card.Product.Price,card.Count,card.Product.Id));
             }
-            return View(list);
+            return PartialView(list);
         }
 
       //  [Authorize]
