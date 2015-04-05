@@ -23,6 +23,7 @@ namespace OnlineShop.Data.DAL
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Quanty { get; set; }
+        public string Image { get; set; }
     
         public virtual ICollection<UsersCard> UsersCards { get; set; }
     }

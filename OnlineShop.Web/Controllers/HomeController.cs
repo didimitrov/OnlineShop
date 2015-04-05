@@ -44,6 +44,7 @@ namespace OnlineShop.Web.Controllers
         }
 
       //  [Authorize]
+        [HttpPost]
         public ActionResult AddToCart(int id,int count)
         {
            

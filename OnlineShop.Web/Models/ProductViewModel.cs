@@ -4,11 +4,12 @@ namespace OnlineShop.Web.Models
 {
     public class ProductViewModel
     {
-        public ProductViewModel(string name, decimal price, int id)
+        public ProductViewModel(string name, decimal price, int id, string image)
         {
             Id=id;
             Name = name;
             Price = price;
+            Image = image;
             //Quanty = quanty;
         }
 
@@ -17,12 +18,14 @@ namespace OnlineShop.Web.Models
             Id = product.Id;
             Name = product.Name;
             Price= product.Price;
+            Image = product.Image;
             //Quanty = product.Quanty;
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public string Image { get; set; }
         //public int Quanty { get; set; }
     }
 }
