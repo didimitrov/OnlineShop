@@ -1,8 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web.Mvc;
 using OnlineShop.Data.DAL;
 using OnlineShop.Web.Models;
+using PagedList;
 
 namespace OnlineShop.Web.Controllers
 {
@@ -43,27 +46,56 @@ namespace OnlineShop.Web.Controllers
 
         }
 
-      //  [Authorize]
+        //  [Authorize]
         [HttpPost]
-        public ActionResult AddToCart(int id,int count)
+        public ActionResult AddToCart(int id, int count)
         {
-           
+
             if (User.Identity.IsAuthenticated)
             {
-               ProductCartDAL.AddToCart(User.Identity.Name, id, count);
-                    return View();  
-                }
+                ProductCartDAL.AddToCart(User.Identity.Name, id, count);
+                return View();
+            }
             return View("Error");
             //throw new Exception("Error in AddtoCart");
         }
 
-        public ActionResult ViewAllProducts()
+        public ActionResult ViewAllProducts(string currentFilter, string searchString, int? page)
         {
-            var products = ProductDAL.GetAllProducts();
-            var viewModel = products.Select(p => new ProductViewModel(p)).OrderBy(model => model.Name).ToList();
-            
+            //var products = ProductDAL.GetAllProducts();
+            //var viewModel = products.Select(p => new ProductViewModel(p)).OrderBy(model => model.Name).ToList();
+            var stories = ProductDAL.GetAllProducts();
 
-            return View(viewModel);
+
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            var pageSize = 2;
+            var pageNumber = (page ?? 1);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var viewModel = stories.Select(p => new ProductViewModel(p))                    
+                    .Where(p => p.Name.ToLower().Contains(searchString.ToLower())).ToList();
+                return View(viewModel.ToPagedList(pageNumber, pageSize));
+
+            }
+            var viewModel2 = stories.Select(p => new ProductViewModel(p)).OrderBy(model => model.Name).ToList();
+
+            return View(viewModel2);
+
+
+
+
+            //return View(viewModel);
         }
     }
 }

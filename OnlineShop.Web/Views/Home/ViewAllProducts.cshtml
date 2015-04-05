@@ -1,24 +1,27 @@
 ﻿@model IEnumerable<OnlineShop.Web.Models.ProductViewModel>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-@{
-    ViewBag.Title = "ViewAllProducts";
-}
 
-<h2>ViewAllProducts</h2>
+
+
 @*http://blogs.msmvps.com/marafa/2014/06/13/how-to-create-asp-net-mvc-authentication-tables-in-an-existing-database/
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
+<br />
 <div class="row">
-    <div class="col-lg-6">
-        <div class="input-group">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-            </span>
-            <input type="text" class="form-control" placeholder="Search for...">
-        </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
+    @using (Html.BeginForm("ViewAllProducts", "Home", FormMethod.Get))
+    {
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true" id="glass"></span>Go!</button>
+                </span>
+                <input type="text" name="SearchString" class="form-control" placeholder="Search for...">
+            </div>
+        </div>
+    }
+
     <div id="data" class="col-lg-6">
         <p>
             @Ajax.ActionLink("View card", "ViewCart", new AjaxOptions()
@@ -30,7 +33,7 @@
         </p>
         <div id=""></div>
     </div>
-</div>
+</div><br />
 
         <table class="table">
             <tr>
