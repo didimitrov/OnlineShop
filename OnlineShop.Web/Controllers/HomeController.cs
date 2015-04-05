@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using OnlineShop.Data.DAL;
 using OnlineShop.Web.Models;
 
@@ -32,13 +29,18 @@ namespace OnlineShop.Web.Controllers
 
         public ActionResult ViewCart()
         {
-            var usersCards = ProductCartDAL.GetAllProductsForUser(User.Identity.Name);
-            var list = new Collection<CartElementViewModel>();
-            foreach (var card in usersCards)
+            if (User.Identity.IsAuthenticated)
             {
-                list.Add(new CartElementViewModel(card.Product.Name,card.Product.Price,card.Count,card.Product.Id));
+                var usersCards = ProductCartDAL.GetAllProductsForUser(User.Identity.Name);
+                var list = new Collection<CartElementViewModel>();
+                foreach (var card in usersCards)
+                {
+                    list.Add(new CartElementViewModel(card.Product.Name, card.Product.Price, card.Count, card.Product.Id));
+                }
+                return PartialView(list);
             }
-            return View(list);
+            return PartialView("Error");
+
         }
 
       //  [Authorize]
@@ -47,7 +49,7 @@ namespace OnlineShop.Web.Controllers
            
             if (User.Identity.IsAuthenticated)
             {
-                ProductCartDAL.AddToCart(User.Identity.Name, id, count);
+               ProductCartDAL.AddToCart(User.Identity.Name, id, count);
                     return View();  
                 }
             return View("Error");
