@@ -13,10 +13,6 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated && !User.IsInRole("Administartor"))
-            {
-                return View("Error");
-            }
             return View(db.Products.ToList());
         }
 
@@ -46,7 +42,7 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Quanty")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,Price,Quanty,Image,Rating")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +74,7 @@ namespace OnlineShop.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Quanty")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Quanty,Image,Rating")] Product product)
         {
             if (ModelState.IsValid)
             {

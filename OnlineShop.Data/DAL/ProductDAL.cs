@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 
 namespace OnlineShop.Data.DAL
@@ -13,26 +14,26 @@ namespace OnlineShop.Data.DAL
           return db.Products.ToList();
       }
 
-       //public static Product GetProductById(int id)
-       //{
-       //    var db = new OnlineShopDbContext();
-       //    return db.Products.SingleOrDefault(x => x.Id == id);
+      public static Product GetProductById(int id)
+      {
+          var db = new OnlineShopDbContext();
+          return db.Products.SingleOrDefault(x => x.Id == id);
 
-       //}
+      }
 
-       //public static void AddProduct(Product product)
-       //{
-       //    var db = new OnlineShopDbContext();
-       //    if (product==null)
-       //    {
-       //        throw CheckoutException.Canceled;
-       //    }
-       //    else
-       //    {
-       //        db.Products.Add(product);
-       //        db.SaveChanges();
-       //    }
+      public static void AddProduct(Product product)
+      {
+          var db = new OnlineShopDbContext();
+          if (product == null)
+          {
+              throw CheckoutException.Canceled;
+          }
+          else
+          {
+              db.Products.Add(product);
+              db.SaveChanges();
+          }
 
-       //}
+      }
     }
 }

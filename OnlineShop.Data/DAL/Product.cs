@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace OnlineShop.Data.DAL
 {
     using System;
@@ -17,6 +19,7 @@ namespace OnlineShop.Data.DAL
         public Product()
         {
             this.UsersCards = new HashSet<UsersCard>();
+            this.Rating = 3;
         }
     
         public int Id { get; set; }
@@ -24,6 +27,8 @@ namespace OnlineShop.Data.DAL
         public decimal Price { get; set; }
         public int Quanty { get; set; }
         public string Image { get; set; }
+        [Range(1,6)]
+        public byte Rating { get; set; }
     
         public virtual ICollection<UsersCard> UsersCards { get; set; }
     }

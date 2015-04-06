@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web.Mvc;
 using OnlineShop.Data.DAL;
@@ -50,6 +48,7 @@ namespace OnlineShop.Web.Controllers
         [HttpPost]
         public ActionResult AddToCart(int id, int count)
         {
+           
 
             if (User.Identity.IsAuthenticated)
             {
