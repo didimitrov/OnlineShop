@@ -87,7 +87,7 @@ namespace OnlineShop.Web.Controllers
                 return View(viewModel.ToPagedList(pageNumber, pageSize));
 
             }
-            var viewModel2 = stories.Select(p => new ProductViewModel(p)).OrderBy(model => model.Name).ToList();
+            var viewModel2 = stories.Select(p => new ProductViewModel(p)).OrderByDescending(model => model.Rating).ToList();
 
             return View(viewModel2);
 
